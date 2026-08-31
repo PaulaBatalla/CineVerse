@@ -148,6 +148,7 @@ function configurarBuscadorHeader() {
     const wrapper = document.createElement('div');
     wrapper.className = 'buscador';
     wrapper.innerHTML = `
+        <label for="buscador-header" class="sr-only">Buscar en catálogo</label>
         <input type="search" id="buscador-header" placeholder="Buscar en catálogo...">
 `;
     header.appendChild(wrapper);
@@ -166,11 +167,36 @@ function configurarBuscadorHeader() {
 }
 
 
+// Formulario de contacto
+// Como no hay backend, simulamos el envío: validamos, mostramos
+// un mensaje de confirmación y limpiamos el formulario.
+function configurarFormularioContacto() {
+    const form = document.getElementById('form-contacto');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nombre = document.getElementById('nombre').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const mensaje = document.getElementById('mensaje').value.trim();
+
+        if (!nombre || !email || !mensaje) {
+            alert('Por favor completá todos los campos.');
+            return;
+        }
+
+        alert(`¡Gracias por tu mensaje, ${nombre}! Te vamos a responder a ${email} a la brevedad.`);
+        form.reset();
+    });
+}
+
 // Inicializacion completa
 document.addEventListener('DOMContentLoaded', () => {
     generarCarrusel();
     generarDestacado();
     configurarBuscadorHeader();
+    configurarFormularioContacto();
 
     // Eventos toggle
     document.getElementById('btn-series').addEventListener('click', mostrarSeries);

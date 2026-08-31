@@ -432,7 +432,7 @@ function init() {
 
     // Aplicar orden guardado
     const savedSort = JSON.parse(localStorage.getItem("catalogSort") || 
-        '{"sortBy":"title", "direction":"asc"}');
+        '{"sortBy":"titulo", "direction":"asc"}');
     ordenarCatalogo(savedSort.sortBy, savedSort.direction);
 
     const params = new URLSearchParams(window.location.search);

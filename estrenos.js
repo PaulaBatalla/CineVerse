@@ -47,53 +47,55 @@ const estrenosDescripcionesExtensas = [
 function generarEstrenos() {
     const contenedor = document.getElementById('contenedor-estrenos');
     contenedor.innerHTML = '';
-    
-    for (let i = 0; i < estrenosTitulos.length; i++) {
-        const estrenoHTML = `
-            <div class="estreno-item" id="estreno-${i}">
-                <div class="estreno-contenedor">
-                    <!-- Parte visible -->
-                    <div class="estreno-visible">
-                        <div class="estreno-poster">
-                            <img src="images/${estrenosPosters[i]}" alt="${estrenosTitulos[i]}">
-                        </div>
-                        <div class="estreno-info">
-                            <h3>${estrenosTitulos[i]}</h3>
-                            <p>${estrenosDescripcionesBreves[i]}</p>
-                        </div>
-                        <div class="estreno-toggle" onclick="toggleEstreno(${i})">
-                            <span>→</span>
+
+    // Armamos todo el HTML en un array y lo insertamos una sola vez,
+    // en vez de hacer contenedor.innerHTML += ... en cada vuelta del loop
+    // (eso reconstruye el DOM entero en cada iteración, no es buena práctica)
+    const items = estrenosTitulos.map((titulo, i) => `
+        <div class="estreno-item" id="estreno-${i}">
+            <div class="estreno-contenedor">
+                <!-- Parte visible -->
+                <div class="estreno-visible">
+                    <div class="estreno-poster">
+                        <img src="images/${estrenosPosters[i]}" alt="${titulo}">
+                    </div>
+                    <div class="estreno-info">
+                        <h3>${titulo}</h3>
+                        <p>${estrenosDescripcionesBreves[i]}</p>
+                    </div>
+                    <button type="button" class="estreno-toggle" data-index="${i}" aria-label="Ver más sobre ${titulo}">
+                        <span>→</span>
+                    </button>
+                </div>
+
+                <!-- Parte expandible (Trailer + Descripción) -->
+                <div class="estreno-expandible">
+                    <div class="trailer-contenedor">
+                        <div class="trailer-wrapper">
+                            <iframe
+                                src="https://www.youtube.com/embed/${estrenosYoutubeIDs[i]}"
+                                title="${titulo} - Trailer"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
                         </div>
                     </div>
-                    
-                    <!-- Parte expandible (Trailer + Descripción) -->
-                    <div class="estreno-expandible">
-                        <div class="trailer-contenedor">
-                            <div class="trailer-wrapper">
-                                <iframe 
-                                    src="https://www.youtube.com/embed/${estrenosYoutubeIDs[i]}" 
-                                    title="${estrenosTitulos[i]} - Trailer"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                        </div>
-                        <div class="descripcion-extensa">
-                            ${estrenosDescripcionesExtensas[i]}
-                        </div>
+                    <div class="descripcion-extensa">
+                        ${estrenosDescripcionesExtensas[i]}
                     </div>
                 </div>
             </div>
-        `;
-        contenedor.innerHTML += estrenoHTML;
-    }
+        </div>
+    `);
+
+    contenedor.innerHTML = items.join('');
 }
 
 // Función para expandir/contraer items
 function toggleEstreno(index) {
     const item = document.getElementById(`estreno-${index}`);
     const todosLosItems = document.querySelectorAll('.estreno-item');
-    
+
     // Si el item clickeado está expandido, contraerlo
     if (item.classList.contains('expandido')) {
         item.classList.remove('expandido');
@@ -105,8 +107,19 @@ function toggleEstreno(index) {
     }
 }
 
+// Conectar los botones de expandir con addEventListener
+// (en vez de onclick inline en el HTML, para mantener el JS separado del HTML)
+function configurarEventosEstrenos() {
+    document.querySelectorAll('.estreno-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            toggleEstreno(btn.dataset.index);
+        });
+    });
+}
+
 // Inicializar al cargar la página
 document.addEventListener('DOMContentLoaded', function() {
     generarEstrenos();
+    configurarEventosEstrenos();
 });
 

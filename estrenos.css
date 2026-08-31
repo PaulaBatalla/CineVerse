@@ -169,6 +169,10 @@ header {
 
 /* Botón/Flecha para expandir */
 .estreno-toggle {
+    /* reset de estilos por defecto de <button> */
+    border: none;
+    font: inherit;
+
     flex-shrink: 0;
     width: 80px;
     display: flex;

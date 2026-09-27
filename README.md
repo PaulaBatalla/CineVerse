@@ -1,32 +1,56 @@
-# 🌐 TPO Diseño Web – Sitio Web Interactivo
-Este proyecto consiste en el desarrollo de un sitio web realizado como trabajo práctico integrador para la materia Diseño y Desarrollo Web. El objetivo fue aplicar los conocimientos adquiridos en HTML5, CSS3 y JavaScript para construir una interfaz moderna, responsive e interactiva.
+# 🎬 CineVerse
+
+Sitio web de catálogo de series y películas, desarrollado como trabajo práctico integrador para la materia **Diseño y Desarrollo Web** (UADE). El objetivo fue aplicar HTML5, CSS3 y JavaScript para construir una interfaz moderna, responsive e interactiva, con contenido y funcionalidades dinámicas manejadas 100% del lado del cliente.
+
+🔗 **Demo:** [tpo-diseno-web.vercel.app](https://tpo-diseno-web.vercel.app/)
 
 ## 👥 Autores
 Paula Batalla - Mateo Larrosa
 
 ## 📌 Descripción del proyecto
-Se desarrolló un sitio web completo con múltiples secciones, siguiendo buenas prácticas de maquetación, diseño y programación web. El proyecto incluye navegación funcional, diseño adaptable a distintos dispositivos y funcionalidades dinámicas mediante JavaScript.
+
+CineVerse simula la plataforma de un sitio de streaming: permite explorar un catálogo de series y películas, ver próximos estrenos con trailers, y comprar merchandising a través de un carrito de compras funcional. Todo el contenido y las funcionalidades interactivas se manejan con JavaScript vanilla, sin frameworks ni backend.
 
 ## 🚀 Funcionalidades principales
-- ✅ Diseño responsive adaptable a desktop, tablet y mobile
-- ✅ Menú de navegación funcional con enlaces entre secciones
-- ✅ Galería de imágenes / contenido visual
-- ✅ Formulario de contacto con validaciones en JavaScript
-- ✅ Contenido dinámico cargado mediante JavaScript
-- ✅ Elementos interactivos (mostrar/ocultar contenido, eventos, etc.)
+
+**Catálogo**
+- Filtrado por tipo (series/películas), género y búsqueda por texto (título o actor)
+- Ordenamiento por título o año, ascendente/descendente
+- Búsqueda global desde el header, con redirección a resultados filtrados
+
+**Merchandising**
+- Carrito de compras con persistencia en `localStorage`
+- Agregar, eliminar y vaciar productos, con cálculo de total en tiempo real
+- Paginación de productos
+
+**Estrenos**
+- Acordeón horizontal con trailers embebidos de YouTube y descripción extendida de cada título
+
+**General**
+- Diseño responsive (desktop, tablet y mobile)
+- Formulario de contacto con validación
+- Navegación consistente entre secciones
 
 ## 🛠️ Tecnologías utilizadas
-- HTML5 (estructura semántica)
-- CSS3 (Flexbox, estilos responsive)
-- JavaScript (interactividad y manipulación del DOM)
-- Google Fonts y recursos externos
+- HTML5 semántico
+- CSS3 (Flexbox, Grid, variables CSS, media queries)
+- JavaScript (ES6+, manipulación del DOM, `localStorage`)
+- [Bootstrap 5](https://getbootstrap.com/) (carrusel del home)
+- Font Awesome (iconografía)
+- Google Fonts (Poppins)
+- Deploy con [Vercel](https://vercel.com/)
+
+## ✅ Testing
+El sitio pasó una ronda de QA manual cubriendo filtros, ordenamiento, carrito de compras, formulario de contacto, acordeón de estrenos y comportamiento responsive. La documentación completa está en [`/qa`](./qa):
+- [Test Plan](./qa/test-plan.md) — alcance, estrategia y entorno de testing
+- [Test Cases](./qa/test-cases.md) — 37 casos de prueba ejecutados
+- [Bug Reports](./qa/bug-reports.md) — defectos detectados y su resolución
 
 ## 🎯 Objetivos del trabajo
-- Aplicar buenas prácticas de desarrollo web
-- Utilizar correctamente HTML, CSS y JavaScript
-- Implementar interactividad en la interfaz
-- Lograr un diseño visual atractivo y funcional
-- Desarrollar un sitio navegable y accesible
+- Aplicar buenas prácticas de desarrollo web (HTML semántico, separación de responsabilidades, código legible)
+- Implementar interactividad y manipulación dinámica del DOM sin frameworks
+- Lograr un diseño visual atractivo, consistente y funcional
+- Desarrollar un sitio navegable, responsive y accesible
 
 ## 🌍 Deploy
 https://tpo-diseno-web.vercel.app/
